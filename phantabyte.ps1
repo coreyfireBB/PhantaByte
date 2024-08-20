@@ -498,9 +498,9 @@ function Apply-HardeningTechniques {
                     This setting allows Remote Desktop connections without Restricted Admin Mode, which could expose reusable credentials to the remote system, increasing the risk of credential theft.
                 #>
                 if ($Action -eq 'Remediate') {
-                    Set-GPRegistryValue -Name $Gpo.DisplayName -Key "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -ValueName "DisableRestrictedAdmin" -Value 0 -Type DWord
-                } else {
                     Set-GPRegistryValue -Name $Gpo.DisplayName -Key "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -ValueName "DisableRestrictedAdmin" -Value 1 -Type DWord
+                } else {
+                    Set-GPRegistryValue -Name $Gpo.DisplayName -Key "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -ValueName "DisableRestrictedAdmin" -Value 0 -Type DWord
                 }
             } 
             'Enable LSA Protection' {
