@@ -214,6 +214,7 @@ function Apply-HardeningTechniques {
         'Enable SEHOP (Structured Exception Handler Overwrite Protection)',
         'Disable Reversible Password Encryption',
         'Enable Client-Side LDAP Signing',
+
         'Disable Insecure Logons to an SMB Server',
         'Restrict Anonymous Access to Named Pipes and Shares',
         'Add LSASS Injection Mitigation ASR Rule'
@@ -653,6 +654,34 @@ function Apply-HardeningTechniques {
                         Set-GPRegistryValue -Name $Gpo.DisplayName -Key $RegistryKeyPath -ValueName $ValueName -Type DWord -Value 0
                         
                         Write-Host "Client-side LDAP signing has been disabled."
+                    }
+                }
+                'Enforce LDAP Signing on Domain Controller Side' {
+                    if ($Action -eq 'Remediate') {
+                        <#
+                        2: Require LDAP signing. (Secure)
+                            This setting enforces LDAP signing on the domain controller, ensuring that all LDAP communications are digitally signed. This helps prevent man-in-the-middle attacks by verifying the integrity and authenticity of LDAP communications.
+                        1: Negotiate signing. (Less Secure)
+                            This setting allows the domain controller to negotiate LDAP signing with clients. If the client supports signing, it will be used; otherwise, communication will proceed without signing, which can increase the risk of man-in-the-middle attacks.
+                        0: Do not require LDAP signing. (Least Secure / Default)
+                            This setting disables LDAP signing, allowing all LDAP communications to occur without digital signatures. This increases the risk of man-in-the-middle attacks where LDAP communications can be intercepted and altered.
+                        #>
+                        
+                        # Define the registry key and value name
+                        $RegistryKeyPath = "HKLM\SYSTEM\CurrentControlSet\Services\NTDS\Parameters"
+                        $ValueName = "LDAPServerIntegrity"
+
+                        # Enforce LDAP signing on the domain controller by setting the value to 2
+                        Set-GPRegistryValue -Name $Gpo.DisplayName -Key $RegistryKeyPath -ValueName $ValueName -Type DWord -Value 2
+                        
+                        Write-Host "LDAP signing on the domain controller has been enforced."
+                    } else {
+                        $RegistryKeyPath = "HKLM\SYSTEM\CurrentControlSet\Services\NTDS\Parameters"
+                        $ValueName = "LDAPServerIntegrity"
+                        # Do not require LDAP signing by setting the value to 0
+                        Set-GPRegistryValue -Name $Gpo.DisplayName -Key $RegistryKeyPath -ValueName $ValueName -Type DWord -Value 0
+                        
+                        Write-Host "LDAP signing on the domain controller has been disabled."
                     }
                 }
                 'Disable Insecure Logons to an SMB Server' {
