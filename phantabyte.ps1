@@ -214,7 +214,7 @@ function Apply-HardeningTechniques {
         'Enable SEHOP (Structured Exception Handler Overwrite Protection)',
         'Disable Reversible Password Encryption',
         'Enable Client-Side LDAP Signing',
-
+        'Enforce LDAP Signing Server Side',
         'Disable Insecure Logons to an SMB Server',
         'Restrict Anonymous Access to Named Pipes and Shares',
         'Add LSASS Injection Mitigation ASR Rule'
@@ -656,7 +656,7 @@ function Apply-HardeningTechniques {
                         Write-Host "Client-side LDAP signing has been disabled."
                     }
                 }
-                'Enforce LDAP Signing on Domain Controller Side' {
+                'Enforce LDAP Signing Server Side' {
                     if ($Action -eq 'Remediate') {
                         <#
                         2: Require LDAP signing. (Secure)
