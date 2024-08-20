@@ -1,10 +1,3 @@
-██████  ██   ██  █████  ███    ██ ████████  █████  ██████  ██    ██ ████████ ███████ 
-██   ██ ██   ██ ██   ██ ████   ██    ██    ██   ██ ██   ██  ██  ██     ██    ██      
-██████  ███████ ███████ ██ ██  ██    ██    ███████ ██████    ████      ██    █████   
-██      ██   ██ ██   ██ ██  ██ ██    ██    ██   ██ ██   ██    ██       ██    ██      
-██      ██   ██ ██   ██ ██   ████    ██    ██   ██ ██████     ██       ██    ███████ 
-
-
 This script was created to enable you to put Windows OS Hardening techniques into place simply. 
 You will need to know what each technique means, what their impact is or could potentially be. 
 
