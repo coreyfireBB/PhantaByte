@@ -15,3 +15,5 @@ Next you will be asked if you want to Link the GPO to an OU, Unlink the GPO from
 Finally you will need to comma separated, add the corresponding numbers of the items you want to remediate comma separated (example: 1,2,3,4,17) 
 
 After that, you will see output for each item selected. The GPO is created, and the changes should have been enacted. 
+
+You can check out a quick introduction to this script here: https://youtu.be/ZnPeuU1lTgM
