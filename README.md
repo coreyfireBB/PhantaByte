@@ -17,3 +17,5 @@ Finally you will need to comma separated, add the corresponding numbers of the i
 After that, you will see output for each item selected. The GPO is created, and the changes should have been enacted. 
 
 You can check out a quick introduction to this script here: https://youtu.be/ZnPeuU1lTgM
+
+If you prefer individual documenttion for the individual remediations, you can follow along here: https://ghosties.net/oshardening/oshardening-windows/individual-hardening-techniques/
